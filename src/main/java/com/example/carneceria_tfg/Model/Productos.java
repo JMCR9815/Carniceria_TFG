@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Productos {
+public class Productos implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int producto_id;

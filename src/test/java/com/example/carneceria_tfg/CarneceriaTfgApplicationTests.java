@@ -32,7 +32,7 @@ class CarneceriaTfgApplicationTests {
 
     @Test
     void contextLoads() {
-        /*Carne_OM carne_OM = new Carne_OM();
+        Carne_OM carne_OM = new Carne_OM();
         Proveedor_OM proveedor_OM = new Proveedor_OM();
         Elaboracion_OM elaboracion_OM = new Elaboracion_OM();
         Productos_OM productos_OM = new Productos_OM();
@@ -43,7 +43,7 @@ class CarneceriaTfgApplicationTests {
         proveedorRepository.saveAll(proveedores);
         carneRepository.saveAll(listaCarne);
         elaboracionesRepository.saveAll(listaElaboraciones);
-        productoRepository.saveAll(listaProductos);*/
+        productoRepository.saveAll(listaProductos);
     }
 
 }

@@ -1,14 +1,20 @@
 package com.example.carneceria_tfg.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
 import java.util.List;
 import java.util.Locale;
 
 @Entity
-public class Elaboracion {
+@Getter
+@Setter
+public class Elaboracion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int elaboracion_id;
@@ -22,8 +28,6 @@ public class Elaboracion {
     @JoinColumn(name = "carne_id")
     private Carne carne;
 
-    @OneToMany(mappedBy = "elaboraciones")
-    private List<Productos> productos;
 
     private String ingredientes;
 
