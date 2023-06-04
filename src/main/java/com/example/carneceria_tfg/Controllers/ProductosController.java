@@ -2,7 +2,6 @@ package com.example.carneceria_tfg.Controllers;
 
 import com.example.carneceria_tfg.Model.Productos;
 import com.example.carneceria_tfg.Service.ProductosService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/productos")
 public class ProductosController {
-    @Autowired
-    private ProductosService productosService;
+    private final ProductosService productosService;
+
+    public ProductosController(ProductosService productosService) {
+        this.productosService = productosService;
+    }
 
 
     @GetMapping

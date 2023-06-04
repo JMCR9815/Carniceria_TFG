@@ -1,6 +1,5 @@
 package com.example.carneceria_tfg.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +7,6 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
-import java.util.List;
 import java.util.Locale;
 
 @Entity
@@ -44,7 +42,7 @@ public class Elaboracion implements Serializable {
         int numeroSemana = fechaActual.get(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear());
         this.semanaElaboracion = "S" + numeroSemana;
 
-        // Generar el código de producto utilizando el número de semana de elaboración y el nombre del producto
+        // Generar el código de producto utilizando el número de semanas de elaboración y el nombre del producto
         this.codigo = this.semanaElaboracion + "-" + this.nombre;
     }
 

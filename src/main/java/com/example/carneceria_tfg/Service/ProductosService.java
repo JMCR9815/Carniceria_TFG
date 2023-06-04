@@ -63,5 +63,14 @@ public class ProductosService {
         return Optional.empty();
     }
 
+    public Optional<Productos>shellProduct(Integer id, int cantidad){
+        if(productoRepository.existsById(id)){
+            productoRepository.shellProduct(cantidad, id);
+            return Optional.of(productoRepository.findById(id).get());
+        }
+        return Optional.empty();
+    }
+
+
 
 }
