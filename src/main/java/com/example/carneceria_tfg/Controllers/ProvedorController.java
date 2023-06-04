@@ -11,15 +11,18 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/proveedores")
-public class ProvvedorController {
-    private final ProveedorRepository proveedorRepository;
+public class ProvedorController {
+    private final ProveedorRepository provedorRepository;
 
-    public ProvvedorController(ProveedorRepository proveedorRepository) {
-        this.proveedorRepository = proveedorRepository;
+
+
+    public ProvedorController(ProveedorRepository proveedorRepository) {
+        this.provedorRepository = proveedorRepository;
     }
+
     @GetMapping
     public Optional<List<Proveedor>> getAllProveedores() {
-        return Optional.of(proveedorRepository.findAll());
+        return Optional.of(provedorRepository.findAll());
     }
 
 }
