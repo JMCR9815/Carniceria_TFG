@@ -2,10 +2,7 @@ package com.example.carneceria_tfg.Controllers;
 
 import com.example.carneceria_tfg.Model.Elaboracion;
 import com.example.carneceria_tfg.Service.ElaboracionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,10 +21,24 @@ public class ElaboracionController {
         return elaboracionService.findall();
     }
 
-    @GetMapping("/{semanaElaboracion}")
-    public Optional<List<Elaboracion>> getElaboracionesBySemana(@PathVariable("semanaElaboracion") String semanaElaboracion) {
+    @GetMapping("/semana/{semanaElaboracion}")
+    public Optional<List<Elaboracion>> getElaboracionesBySemana(@PathVariable String semanaElaboracion) {
         return elaboracionService.findElaboracionesBySemana(semanaElaboracion);
     }
 
+    @GetMapping("/id/{id}")
+    public Optional<Elaboracion> getElaboracion(@PathVariable Integer id) {
+        return elaboracionService.getElaboracion(id);
+    }
+
+    @PostMapping("/addElaboracion")
+    public Elaboracion addElaboracion(@RequestBody Elaboracion elaboracion) {
+        return elaboracionService.addElaboracion(elaboracion);
+    }
+
+    @DeleteMapping("/deleteElaboracion/{elaboracion_id}")
+    public void deleteElaboracion(@PathVariable Integer elaboracion_id) {
+        elaboracionService.removeElaboracion(elaboracion_id);
+    }
 
 }
