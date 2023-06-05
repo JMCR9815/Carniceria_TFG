@@ -1,5 +1,6 @@
 package com.example.carneceria_tfg.Repository;
 
+import com.example.carneceria_tfg.Model.Carne;
 import com.example.carneceria_tfg.Model.Productos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,4 +19,9 @@ public interface ProductoRepository extends JpaRepository<Productos, Integer> {
     @Modifying
     @Query("update Productos p set p.cantidad = p.cantidad-?1 where p.producto_id = ?2")
     void shellProduct(int cantidad, int producto_id);
+
+    @Transactional
+    @Modifying
+    @Query("update Productos p set p.carne=?1")
+    void setCarne(Carne byNombreEquals);
 }

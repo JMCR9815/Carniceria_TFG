@@ -3,6 +3,8 @@ package com.example.carneceria_tfg.Model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -22,7 +24,7 @@ public class Elaboracion implements Serializable {
     private String semanaElaboracion;
     private int cantidadElaborada;
 
-    @ManyToOne
+    @ManyToOne( )
     @JoinColumn(name = "carne_id")
     private Carne carne;
 

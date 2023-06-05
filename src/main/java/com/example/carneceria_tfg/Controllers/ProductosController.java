@@ -41,4 +41,8 @@ public class ProductosController {
     public Optional<Productos> addProductoWithCarne(@RequestBody Productos productos, @PathVariable String nombre_carne) {
         return productosService.addProductWithCarne(productos, nombre_carne);
     }
+
+
+
+
 }

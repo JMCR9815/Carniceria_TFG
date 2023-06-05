@@ -1,7 +1,6 @@
 package com.example.carneceria_tfg.Service;
 
 import com.example.carneceria_tfg.Model.Productos;
-import com.example.carneceria_tfg.Repository.CarneRepository;
 import com.example.carneceria_tfg.Repository.ElaboracionesRepository;
 import com.example.carneceria_tfg.Repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ public class ProductosService {
     @Autowired
     private ElaboracionesRepository elaboracionesRepository;
     @Autowired
-    private CarneRepository carneRepository;
+    private CarneService carneService;
 
     public List<Productos> getAllProducts() {
         return productoRepository.findAll();
@@ -45,32 +44,25 @@ public class ProductosService {
         } else {
             producto.setElaboraciones(elaboracionesRepository.findByNombreEquals(nombre));
             productoRepository.updateProduct(producto.getCantidad(), producto.getProducto_id());
-
         }
         return Optional.empty();
     }
 
     public Optional<Productos> addProductWithCarne(Productos producto, String carne) {
         if (!productoRepository.existsById(producto.getProducto_id())) {
-            producto.setCarne(carneRepository.findByNombreEquals(carne));
+            productoRepository.setCarne(carneService.getCarneByName(carne));
             productoRepository.save(producto);
             return Optional.of(producto);
         } else {
-            producto.setCarne(carneRepository.findByNombreEquals(carne));
+            productoRepository.setCarne(carneService.getCarneByName(carne));
             productoRepository.updateProduct(producto.getCantidad(), producto.getProducto_id());
-
         }
         return Optional.empty();
     }
 
-    public Optional<Productos>shellProduct(Integer id, int cantidad){
-        if(productoRepository.existsById(id)){
-            productoRepository.shellProduct(cantidad, id);
-            return Optional.of(productoRepository.findById(id).get());
-        }
-        return Optional.empty();
+    public void deleteProduct(Integer id) {
+
+        productoRepository.deleteById(id);
     }
-
-
 
 }

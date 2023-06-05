@@ -15,7 +15,7 @@ public class Carne implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int carne_id;
     private String nombre;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
     private int catidad;
