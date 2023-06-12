@@ -22,6 +22,7 @@ public class CarneController {
 
     @GetMapping
     public Optional<List<Carne>> getCarneList() {
+
         return carneService.findAll();
     }
 

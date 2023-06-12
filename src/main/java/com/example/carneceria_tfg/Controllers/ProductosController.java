@@ -42,6 +42,11 @@ public class ProductosController {
         return productosService.addProductWithCarne(productos, nombre_carne);
     }
 
+    @DeleteMapping("/deleteProduct/{id}")
+    public void deleteProduct(@PathVariable int id){
+        productosService.deleteProduct(id);
+    }
+
 
 
 
