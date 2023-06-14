@@ -2,6 +2,7 @@ package com.example.carneceria_tfg.Service;
 
 import com.example.carneceria_tfg.Model.Elaboracion;
 import com.example.carneceria_tfg.Repository.ElaboracionesRepository;
+import com.example.carneceria_tfg.Repository.ProductoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +11,12 @@ import java.util.Optional;
 @Service
 public class ElaboracionService {
     private final ElaboracionesRepository elaboracionRepository;
+    private final ProductoRepository productoRepository;
 
-    public ElaboracionService(ElaboracionesRepository elaboracionRepository) {
+    public ElaboracionService(ElaboracionesRepository elaboracionRepository,
+                              ProductoRepository productoRepository) {
         this.elaboracionRepository = elaboracionRepository;
+        this.productoRepository = productoRepository;
     }
 
     @SuppressWarnings("NewApi")
@@ -21,6 +25,9 @@ public class ElaboracionService {
     }
 
     public Elaboracion addElaboracion(Elaboracion elaboracion) {
+        if (elaboracionRepository.existsByCodigo(elaboracion.getCodigo())) {
+            elaboracionRepository.updateElaboracion(elaboracion);
+        }
         return elaboracionRepository.save(elaboracion);
     }
 
@@ -35,8 +42,9 @@ public class ElaboracionService {
     }
 
 
-    public long removeElaboracion(Integer id) {
-        return elaboracionRepository.deleteByElaboracion_id(id);
+    public void removeElaboracion(Integer id) {
+        productoRepository.setElaboracionNull(id);
+        elaboracionRepository.deleteByElaboracion_id(id);
     }
 
 }

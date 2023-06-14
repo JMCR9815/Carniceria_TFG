@@ -18,8 +18,8 @@ public interface CarneRepository extends JpaRepository<Carne, Integer> {
 
     @Transactional
     @Modifying
-    @Query("update Carne c set c.catidad = ?1, c.fecha_entrada = ?2 where c.carne_id=?3")
-    void updateCatidadAndFecha_entradaByCatidadAndFecha_entrada(int catidad, LocalDate fecha_entrada,int carne_id);
+    @Query("update Carne c set c.catidad = ?1, c.fecha_entrada = ?2 where c.nombre=?3")
+    void updateCatidadAndFecha_entradaByCatidadAndFecha_entrada(int catidad, LocalDate fecha_entrada, String carne_name);
 
     boolean existsByNombreLikeAllIgnoreCase(String nombre);
 

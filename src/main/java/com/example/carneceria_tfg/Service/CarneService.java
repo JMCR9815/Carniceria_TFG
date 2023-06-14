@@ -26,7 +26,7 @@ public class CarneService {
 
     public Carne addCarne(Carne carne) {
         if (carneRepository.existsByNombreLikeAllIgnoreCase(carne.getNombre())) {
-            carneRepository.updateCatidadAndFecha_entradaByCatidadAndFecha_entrada(carne.getCatidad(), carne.getFecha_entrada(), carne.getCarne_id());
+            carneRepository.updateCatidadAndFecha_entradaByCatidadAndFecha_entrada(carne.getCatidad(), carne.getFecha_entrada(), carne.getNombre());
         } else {
             return carneRepository.save(carne);
         }
